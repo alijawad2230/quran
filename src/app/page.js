@@ -33,7 +33,7 @@ export default async function Home() {
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-1">
         {data.data.chapters?.map((i) => {
-          return <MiniSurat className="surathome z-50" data={i}></MiniSurat>;
+          return <MiniSurat key={i} className="surathome z-50" data={i}></MiniSurat>;
         })}
       </div>
     </main>

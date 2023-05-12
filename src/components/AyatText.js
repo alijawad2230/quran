@@ -5,13 +5,13 @@ export default function AyatText(props) {
     <div
       className={`bg-gray-${
         props.ayat % 2 == 0 ? "800" : "900"
-      } text-white py-10`}
+      } text-white py-3`}
       dir="rtl"
     >
-      <div className="px-2 inline-block">
-        <p>{props.text}</p>
-        <div className="relative w-16 my-auto whitespace-nowrap">
-          <img className="items-center justify-center " src="/ayatmark.png" />
+      <div className="px-2 w-full flex content-center items-baseline flex-wrap">
+        <p className="my-auto">{props.text}</p>
+        <div className="relative  my-auto " style={{ width: "56px" }}>
+          <img className="items-center  justify-center " src="/ayatmark.png" />
           <span
             className="absolute  text-black"
             style={{
@@ -20,7 +20,7 @@ export default function AyatText(props) {
               transform: "translate(-50%, -50%)",
             }}
           >
-            {props.ayat}
+            {props.chapter == 1 ? props.ayat : props.ayat + 1}
           </span>
         </div>
       </div>
