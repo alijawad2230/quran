@@ -1,6 +1,8 @@
 "use client";
 export default function MiniSurat(props) {
-  const movetosurat = () => {};
+  const movetosurat = () => {
+    console.log("sss");
+  };
   return (
     <div
       onClick={movetosurat}

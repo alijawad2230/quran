@@ -4,6 +4,7 @@ import "../app/globals.css";
 export default function NavBar() {
   const search = () => {
     console.log("sss");
+    console.log("sascscss");
   };
   return (
     <nav className="flex items-center justify-center bg-slate-800 text-gray-200 p-10">
