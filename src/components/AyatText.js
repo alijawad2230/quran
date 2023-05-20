@@ -3,8 +3,8 @@
 export default function AyatText(props) {
   return (
     <div
-      className={`bg-gray-${
-        props.ayat % 2 == 0 ? "800" : "900"
+      className={`${
+        props.ayat % 2 == 0 ? "bg-gray-800" : "bg-gray-900"
       } text-white py-3`}
       dir="rtl"
     >

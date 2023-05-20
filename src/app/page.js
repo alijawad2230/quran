@@ -1,5 +1,7 @@
 import MiniSurat from "../components/MiniSurat";
 import axios from "axios";
+import path from 'path';
+path.resolve('./next.config.js');
 export default async function Home() {
   const data = await axios.get(
     "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/info.json"

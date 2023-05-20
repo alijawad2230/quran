@@ -1,6 +1,7 @@
 import axios from "axios";
 import AyatText from "@/components/AyatText";
-
+import path from "path";
+path.resolve("./next.config.js");
 export default async function Surahnumber(props) {
   const req =
     (await "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/ara-quransoosinonun/") +
@@ -40,7 +41,14 @@ export default async function Surahnumber(props) {
       </div>
       {data.data.chapter?.map((i) => {
         {
-          return <AyatText key={i.text} text={i.text} ayat={i.verse} chapter={i.chapter} />;
+          return (
+            <AyatText
+              key={i.text}
+              text={i.text}
+              ayat={i.verse}
+              chapter={i.chapter}
+            />
+          );
         }
       })}
     </div>
