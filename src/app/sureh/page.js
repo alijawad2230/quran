@@ -1,4 +1,3 @@
-import axios from "axios";
 import path from 'path';
 path.resolve('./next.config.js');
 export default function Surah() {
