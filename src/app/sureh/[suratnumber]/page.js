@@ -272,14 +272,16 @@ export default function SurehShow(props) {
         // onClick={() => setfontcode((i) => (i >= 18 ? 0 : i + 1))}
       >
         {/* رفع ایراد در برخی صفخات */}
-        <AyatText
-          text={"بِسمِ اِ۬للَّهِ اِ۬لرَّحۡمَٰنِ اِ۬لرَّحِيمِ          "}
-          ayat={1}
-          fontsize={fontsize}
-          tarjome={" به نام خداوند بخشنده و مهربان"}
-          fontcode={fontcode}
-          dark={darkmode}
-        />
+        {
+          <AyatText
+            text={"بِسمِ اِ۬للَّهِ اِ۬لرَّحۡمَٰنِ اِ۬لرَّحِيمِ          "}
+            ayat={0}
+            fontsize={fontsize}
+            tarjome={" به نام خداوند بخشنده و مهربان"}
+            fontcode={fontcode}
+            dark={darkmode}
+          />
+        }
         {/* فرستادن اطلاعات به کامپوننت برای نمایش دادن ایات */}
         {data?.data.chapter?.map((i) => {
           {
