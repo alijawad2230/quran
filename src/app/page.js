@@ -1,7 +1,7 @@
 import MiniSurat from "../components/MiniSurat";
 import axios from "axios";
-import path from 'path';
-path.resolve('./next.config.js');
+import path from "path";
+path.resolve("./next.config.js");
 export default async function Home() {
   const data = await axios.get(
     "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/info.json"
@@ -35,7 +35,9 @@ export default async function Home() {
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-1">
         {data.data.chapters?.map((i) => {
-          return <MiniSurat key={i} className="surathome z-50" data={i}></MiniSurat>;
+          return (
+            <MiniSurat key={i} className="surathome z-50" data={i}></MiniSurat>
+          );
         })}
       </div>
     </main>

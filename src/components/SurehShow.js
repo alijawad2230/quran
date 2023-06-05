@@ -58,7 +58,27 @@ export default function SurehShow(props) {
   // درخاست اطلاعات از دیتابیس
 
   // تعریف دیتاها
-
+  const req =
+    // "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/ara-quranqaloon/" +
+    "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/ara-quranwarsh/" +
+    props.params.suratnumber +
+    ".json";
+  const reqtarjome =
+    "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/fas-hussainansarian/" +
+    props.params.suratnumber +
+    ".json";
+  // تعریف دیتاها
+  const [data, setdata] = useState();
+  const [tarjomedata, settarjomedata] = useState();
+  // درصورت تغییر صفحه دوباره به دیتا بیس درخواست داده شود تا اطلاعات جدید گرفته شود
+  useEffect(() => {
+    axios.get(req).then((res) => {
+      setdata(res);
+    });
+    axios.get(reqtarjome).then((res) => {
+      settarjomedata(res);
+    });
+  }, [req]);
   // درصورت تغییر صفحه دوباره به دیتا بیس درخواست داده شود تا اطلاعات جدید گرفته شود
 
   // await axios.get`https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/ara-qurannastaleeqn/${props.params.suratnumber}.json`;
@@ -117,7 +137,7 @@ export default function SurehShow(props) {
       {/* بخش تنظیمات فونت */}
       <div
         className={`bg-gray-800 
-         text-white py-3 ${props.page == 1 ? "block" : "block"}`}
+         text-white py-3 ${props.params.suratnumber == 1 ? "block" : "block"}`}
         dir="rtl"
       >
         <div className="w-full bg-cyan-900 px-2 py-1  sm:flex justify-around items-center">
@@ -259,7 +279,7 @@ export default function SurehShow(props) {
           dark={darkmode}
         />
         {/* فرستادن اطلاعات به کامپوننت برای نمایش دادن ایات */}
-        {props.data?.data.chapter?.map((i) => {
+        {data?.data.chapter?.map((i) => {
           {
             return (
               <AyatText
@@ -269,7 +289,7 @@ export default function SurehShow(props) {
                 ayat={i.verse}
                 chapter={i.chapter}
                 fontsize={fontsize}
-                tarjome={props.tarjomedata?.data.chapter[i.verse - 1]?.text}
+                tarjome={tarjomedata?.data.chapter[i.verse - 1]?.text}
                 dark={darkmode}
               />
             );

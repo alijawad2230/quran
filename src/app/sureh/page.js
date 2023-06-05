@@ -1,6 +1,6 @@
 import axios from "axios";
-import path from 'path';
-path.resolve('./next.config.js');
+import path from "path";
+path.resolve("./next.config.js");
 export default function Surah() {
   // const data = await axios.get(
   //   "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/info.json"
