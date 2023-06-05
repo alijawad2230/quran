@@ -1,13 +1,22 @@
 "use client";
+import { useEffect, useState } from "react";
 import "../app/globals.css";
 
 export default function NavBar() {
+  // check and reset theme when `darkMode` changes
+
+  // check theme on component mount
+
+  // check and reset theme
+
   const search = () => {
     console.log("sss");
     console.log("sascscss");
   };
   return (
-    <nav className="flex items-center justify-center bg-slate-800 text-gray-200 p-10">
+    <nav
+      className={`flex items-center justify-center bg-slate-800 text-gray-200 p-10`}
+    >
       <div class="w-full mx-auto">
         <div class="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-white overflow-hidden">
           <div class="grid place-items-center h-full w-12 text-gray-300">
@@ -33,7 +42,7 @@ export default function NavBar() {
             class="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
             type="text"
             id="search"
-            placeholder="Search in quran"
+            placeholder="سرچ نام سوره"
           />
         </div>
       </div>
