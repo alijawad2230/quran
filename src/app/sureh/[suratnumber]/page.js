@@ -2,6 +2,7 @@
 import AyatText from "@/components/AyatText";
 import path from "path";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 import { useState, useEffect } from "react";
 path.resolve("./next.config.js");
@@ -57,8 +58,8 @@ export default function SurehShow(props) {
   // localStorage.setItem("font", aref_Ruqaa_Ink);
   // let getfont = localStorage.getItem("font");
 
-  // درخاست اطلاعات از دیتابیس
-
+  const router = useRouter();
+  console.log(router);
   // تعریف دیتاها
   const req =
     // "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/ara-quranqaloon/" +
@@ -132,6 +133,8 @@ export default function SurehShow(props) {
   ];
 
   const [darkmode, setdarkmode] = useState(true);
+
+  const [showayat, setshowayat] = useState(1);
 
   // بدنه اصلی و کدهای اچ تی ام ال
   return (
@@ -283,22 +286,56 @@ export default function SurehShow(props) {
           />
         }
         {/* فرستادن اطلاعات به کامپوننت برای نمایش دادن ایات */}
-        {data?.data.chapter?.map((i) => {
+        {data?.data.chapter?.map((i, index) => {
           {
             return (
-              <AyatText
-                fontcode={fontcode}
-                key={i.text}
-                text={i.text}
-                ayat={i.verse}
-                chapter={i.chapter}
-                fontsize={fontsize}
-                tarjome={tarjomedata?.data.chapter[i.verse - 1]?.text}
-                dark={darkmode}
-              />
+              index <= showayat * 20 && (
+                <AyatText
+                  fontcode={fontcode}
+                  key={i.text}
+                  text={i.text}
+                  ayat={i.verse}
+                  chapter={i.chapter}
+                  fontsize={fontsize}
+                  tarjome={tarjomedata?.data.chapter[i.verse - 1]?.text}
+                  dark={darkmode}
+                />
+              )
             );
           }
         })}
+      </div>
+      <div className="w-full bg-cyan-900 px-4 py-3  sm:flex justify-around items-center">
+        <div class="inline-flex">
+          <button
+            disabled={data?.data.chapter[0].chapter == 1 ? true : false}
+            onClick={() =>
+              router.replace(`/sureh/${Number(props.params.suratnumber) - 1}`)
+            }
+            className="bg-blue-500 p-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-l rounded-s-full"
+          >
+            سوره قبلی
+          </button>
+          <button
+            disabled={data?.data.chapter[0].chapter == 114 ? true : false}
+            onClick={() =>
+              router.replace(`/sureh/${Number(props.params.suratnumber) + 1}`)
+            }
+            className="bg-blue-500 p-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r rounded-e-full"
+          >
+            سوره بعدی
+          </button>
+        </div>
+        {data?.data.chapter.length >= showayat * 20 && (
+          <button
+            onClick={() => {
+              setshowayat((old) => old + 1);
+            }}
+            className="bg-blue-500 p-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            صفحه بعد
+          </button>
+        )}
       </div>
     </div>
   );

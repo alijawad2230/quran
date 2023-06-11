@@ -1,12 +1,23 @@
+"use client";
 import MiniSurat from "../components/MiniSurat";
 import axios from "axios";
 import path from "path";
+import { useRouter } from "next/navigation";
+
+import { useEffect, useState } from "react";
 path.resolve("./next.config.js");
-export default async function Home() {
-  const data = await axios.get(
-    "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/info.json"
-  );
-  console.log(data.data.chapters[0].name);
+export default function Home() {
+  const [data, setdata] = useState(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    axios
+      .get("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/info.json")
+      .then((res) => {
+        setdata(res);
+      });
+    console.log(data);
+  }, []);
   return (
     <main className="bg-slate-600 text-gray-100 ">
       <div className="mx-auto  w-2/4 p-10">
@@ -34,9 +45,16 @@ export default async function Home() {
         </svg>
       </div>
       <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-1">
-        {data.data.chapters?.map((i) => {
+        {data?.data.chapters?.map((i) => {
           return (
-            <MiniSurat key={i} className="surathome z-50" data={i}></MiniSurat>
+            <div
+              key={i}
+              onClick={() => {
+                router.push(`/sureh/${i.chapter}`);
+              }}
+            >
+              <MiniSurat className="surathome z-50" data={i}></MiniSurat>
+            </div>
           );
         })}
       </div>

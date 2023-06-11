@@ -114,7 +114,7 @@ export default function AyatText(props) {
                 transform: "translate(-50%, -50%)",
               }}
             >
-              {props.chapter == 1 ? props.ayat : props.ayat + 1}
+              {props.chapter == 1 ? props.ayat - 1 : props.ayat}
             </span>
           </div>
         </div>
