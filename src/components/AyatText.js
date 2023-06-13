@@ -114,7 +114,11 @@ export default function AyatText(props) {
                 transform: "translate(-50%, -50%)",
               }}
             >
-              {props.chapter == 1 ? props.ayat - 1 : props.ayat}
+              {props.ayat == 0
+                ? "*"
+                : props.chapter == 1
+                ? props.ayat - 1
+                : props.ayat}
             </span>
           </div>
         </div>
@@ -128,7 +132,7 @@ export default function AyatText(props) {
                   : fonts[0].style.fontFamily,
             }}
             id="root"
-            className={`my-auto cursor-pointer p-2 w-fit transition ${
+            className={`my-auto cursor-default p-2 w-fit transition ${
               !props.dark ? "hover:bg-amber-100" : "hover:bg-cyan-950"
             } p-0 md:p-2`}
           >
@@ -143,7 +147,7 @@ export default function AyatText(props) {
                   ? fonts[props.fontcode].style.fontFamily
                   : fonts[0].style.fontFamily,
             }}
-            className={`my-auto cursor-pointer p-2 w-fit transition ${
+            className={`my-auto cursor-default p-2 w-fit transition ${
               !props.dark ? "hover:bg-amber-100" : "hover:bg-cyan-950"
             } p-0 md:p-2 `}
           >

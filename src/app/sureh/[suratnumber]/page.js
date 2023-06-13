@@ -3,6 +3,7 @@ import AyatText from "@/components/AyatText";
 import path from "path";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import MiniSurat from "../../../components/MiniSurat";
 
 import { useState, useEffect } from "react";
 path.resolve("./next.config.js");
@@ -70,8 +71,10 @@ export default function SurehShow(props) {
     "https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/editions/fas-hussainansarian/" +
     props.params.suratnumber +
     ".json";
+
   // تعریف دیتاها
   const [data, setdata] = useState();
+  const [surehdata, setsurehdata] = useState();
   const [tarjomedata, settarjomedata] = useState();
   // درصورت تغییر صفحه دوباره به دیتا بیس درخواست داده شود تا اطلاعات جدید گرفته شود
   useEffect(() => {
@@ -81,6 +84,11 @@ export default function SurehShow(props) {
     axios.get(reqtarjome).then((res) => {
       settarjomedata(res);
     });
+    axios
+      .get("https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api@1/info.json")
+      .then((res) => {
+        setsurehdata(res);
+      });
   }, []);
   // درصورت تغییر صفحه دوباره به دیتا بیس درخواست داده شود تا اطلاعات جدید گرفته شود
 
@@ -139,6 +147,54 @@ export default function SurehShow(props) {
   // بدنه اصلی و کدهای اچ تی ام ال
   return (
     <div className="leading-10	">
+      <div class="cursor-default flex flex-col items-center justify-center  bg-gray-800   w-full font-serif">
+        <div className="relative w-40 flex items-center justify-center">
+          <img src="/surat.png " className="" />
+          <span
+            style={{
+              left: "50%",
+              transform: "translate(-50%, 0)",
+              fontSize: "28px",
+            }}
+            className="absolute   text-cyan-800 font-semibold "
+          >
+            {props.params.suratnumber}
+          </span>
+        </div>
+        <div
+          dir="rtl"
+          class="flex flex-col items-center justify-center text-center  p-6 w-full"
+        >
+          <span class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+            نام :{" "}
+            <span>
+              {
+                surehdata?.data.chapters[props.params.suratnumber - 1]
+                  .arabicname
+              }
+            </span>
+            <span className="block p-2">
+              {surehdata?.data.chapters[props.params.suratnumber - 1].name} (
+              {
+                surehdata?.data.chapters[props.params.suratnumber - 1]
+                  .englishname
+              }
+              )
+            </span>
+          </span>
+          <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+            تعداد ایات :{" "}
+            {
+              surehdata?.data.chapters[props.params.suratnumber - 1].verses
+                .length
+            }
+          </p>
+          <p class="text-xs text-neutral-500 dark:text-neutral-300">
+            نازل شده در :{" "}
+            {surehdata?.data.chapters[props.params.suratnumber - 1].revelation}
+          </p>
+        </div>
+      </div>
       {/* بخش تنظیمات فونت */}
       <div
         className={`bg-gray-800 
@@ -305,7 +361,7 @@ export default function SurehShow(props) {
           }
         })}
       </div>
-      <div className="w-full bg-cyan-900 px-4 py-3  sm:flex justify-around items-center">
+      <div className="w-full bg-cyan-900 px-4 py-3  flex justify-around items-center">
         <div class="inline-flex">
           <button
             disabled={data?.data.chapter[0].chapter == 1 ? true : false}
@@ -321,7 +377,7 @@ export default function SurehShow(props) {
             onClick={() =>
               router.replace(`/sureh/${Number(props.params.suratnumber) + 1}`)
             }
-            className="bg-blue-500 p-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r rounded-e-full"
+            className="bg-blue-500 p-2 hover:bg-blue-700 text-white font-bold py-2 px-4  rounded-e-full"
           >
             سوره بعدی
           </button>
@@ -331,7 +387,7 @@ export default function SurehShow(props) {
             onClick={() => {
               setshowayat((old) => old + 1);
             }}
-            className="bg-blue-500 p-2 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 p-2 mx-1 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           >
             صفحه بعد
           </button>

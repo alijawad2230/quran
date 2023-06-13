@@ -14,6 +14,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <NavBar />
         <div className="">{children}</div>
+        <div className="color-bg font-bold text-white p-16 text-center">
+          <p>ساخته شده توسط علی جواد حیدری برای مسابقات 1402 خرداد</p>
+        </div>
       </body>
     </html>
   );

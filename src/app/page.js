@@ -44,7 +44,7 @@ export default function Home() {
           ></path>
         </svg>
       </div>
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-1">
+      <div className="grid  md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 px-1">
         {data?.data.chapters?.map((i) => {
           return (
             <div
