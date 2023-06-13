@@ -165,7 +165,7 @@ export default function SurehShow(props) {
           dir="rtl"
           class="flex flex-col items-center justify-center text-center  p-6 w-full"
         >
-          <span class="mb-2 text-xl font-medium text-neutral-800 dark:text-neutral-50">
+          <span class="mb-2 text-xl font-medium text-neutral-50">
             نام :{" "}
             <span>
               {
@@ -182,14 +182,14 @@ export default function SurehShow(props) {
               )
             </span>
           </span>
-          <p class="mb-4 text-base text-neutral-600 dark:text-neutral-200">
+          <p class="mb-4 text-base text-neutral-100">
             تعداد ایات :{" "}
             {
               surehdata?.data.chapters[props.params.suratnumber - 1].verses
                 .length
             }
           </p>
-          <p class="text-xs text-neutral-500 dark:text-neutral-300">
+          <p class="text-xs text-neutral-100">
             نازل شده در :{" "}
             {surehdata?.data.chapters[props.params.suratnumber - 1].revelation}
           </p>

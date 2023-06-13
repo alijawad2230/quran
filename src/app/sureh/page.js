@@ -7,5 +7,5 @@ export default function Surah() {
   // );
   // console.log(data.data.chapters[0].name);
 
-  return <div> gellow </div>;
+  return <div> hello </div>;
 }
