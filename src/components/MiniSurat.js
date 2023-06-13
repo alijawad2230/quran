@@ -28,10 +28,10 @@ export default function MiniSurat(props) {
             {props.data.name} ({props.data.englishname})
           </span>
         </span>
-        <p class="mb-4 text-base text-neutral-600 ">
+        <p class="mb-4 text-base text-neutral-200 ">
           تعداد ایات : {props.data.verses.length}
         </p>
-        <p class="text-xs text-neutral-500 ">
+        <p class="text-xs text-neutral-300 ">
           نازل شده در : {props.data.revelation}
         </p>
       </div>
