@@ -83,6 +83,7 @@ export default function NavBar() {
         {data?.data.chapters?.map((i, index) => {
           return (
             <div
+              key={index}
               className={`font-sans font-light border-r-2 text-right border-teal-500 hover:border-teal-600 hover:scale-110 relative hover:-translate-x-3 transition cursor-pointer`}
               onClick={() => {
                 router.replace(`/sureh/${i.chapter}`);
